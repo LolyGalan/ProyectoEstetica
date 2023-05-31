@@ -26,7 +26,7 @@ public class Cita {
        
         DAO.insertar("cita", columnas);
 	}
-	public Cita() throws SQLException{
+	public Cita(Servicio servicio) throws SQLException{
     	super();
        /* HashMap<String,Object>restricciones=new HashMap<String,Object>();
         restricciones.put("nombre", nombre);*/
@@ -41,6 +41,7 @@ public class Cita {
         
        
     }
+	
 	public int getNumeroDeCita() {
 		return numeroDeCita;
 	}
@@ -71,6 +72,20 @@ public class Cita {
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
+	public static ArrayList<Cita> getTodos() throws SQLException, ClienteNoExisteException{
+		   LinkedHashSet<String> columnasSacar = new LinkedHashSet<>();
+		   columnasSacar.add("servicio");
+		   HashMap<String,Object> restricciones = new HashMap<>();
+		   ArrayList<Cita> citas = new ArrayList<>();
+		   ArrayList<Object> listaCitas= new ArrayList<>();
+		   listaCitas=DAO.consultar("cita", columnasSacar, restricciones);
+		   for(byte i =0;i<listaCitas.size();i+=3) {
+			   Cita cita = new Cita(
+					   (Servicio)listaCitas.get(i));
+		   citas.add(cita);
+		   }
+		   return citas;
+	   }
 	@Override
 	public String toString() {
 		return "Cita [numeroDeCita=" + numeroDeCita + ", fechaInicio=" + fechaInicio + ", FechaFin=" + fechaFin

@@ -15,21 +15,18 @@ import excepciones.ClienteNoExisteException;
 
 import javax.swing.BoxLayout;
 
-public class PantallaCliente extends JPanel{
+public class PantallaCentros extends JPanel{
 	private Ventana ventana;
-	public PantallaCliente(Ventana v) throws SQLException, ClienteNoExisteException {
+	public PantallaCentros(Ventana v) throws SQLException, ClienteNoExisteException {
 		setBackground(new Color(255, 255, 255));
 		this.ventana = v;
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel welcomeLabel = new JLabel("Hola, "+ ventana.clienteLogado.getNombre() );
+		JLabel welcomeLabel = new JLabel("Hola, "+ ventana.clienteLogado.getNombre()+ " aquí puedes elegir centro " );
 		add(welcomeLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
-		
-		JButton registryCitaButton = new JButton("Registrar cita");
-		panel.add(registryCitaButton);
 		
 		JScrollPane lista = new JScrollPane();
 		add(lista, BorderLayout.CENTER);
@@ -41,6 +38,7 @@ public class PantallaCliente extends JPanel{
 		for(byte i=0;i<todos.size();i++) {
 			contenedorElementos.add(new ElementoListaCentro(ventana, todos.get(i)));
 		}
+		System.out.println(todos.size());
 	}
 
 }

@@ -53,7 +53,7 @@ public class Cliente extends Persona {
 		columnas.put("apellidos", apellidos);
         columnas.put("telefono", telefono);
         columnas.put("contraseña", contraseña);
-        columnas.put("citasCogidas", citasCogidas.size()); //Preguntar a Miguel cómo puedo poner aquí un entero correcto
+      //  columnas.put("citasCogidas", citasCogidas.size()); //Preguntar a Miguel cómo puedo poner aquí un entero correcto
        
         DAO.insertar("cliente", columnas);//quitar unique de citasCogidas
 	}

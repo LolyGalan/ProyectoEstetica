@@ -1,9 +1,12 @@
 package interfaces;
 
+import java.sql.SQLException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import clases.Cliente;
+import excepciones.ClienteNoExisteException;
 
 public class Ventana extends JFrame {
 	protected Cliente clienteLogado;
@@ -17,7 +20,7 @@ public class Ventana extends JFrame {
 		this.setVisible(true);
 		
 	}
-	public void cambiarAPantalla(Class<?> clase) {
+	public void cambiarAPantalla(Class<?> clase) throws SQLException, ClienteNoExisteException {
 		this.getContentPane().setVisible(false);
 		if(clase.equals(PantallaLogin.class)) {
 			this.setContentPane(new PantallaLogin(this));
@@ -27,6 +30,9 @@ public class Ventana extends JFrame {
 		}
 		if (clase.equals(PantallaCliente.class)) {
 			this.setContentPane(new PantallaCliente(this));
+		}
+		if (clase.equals(PantallaCentros.class)) {
+			this.setContentPane(new PantallaCentros(this));
 		}
 		this.getContentPane().setVisible(true);
 	}

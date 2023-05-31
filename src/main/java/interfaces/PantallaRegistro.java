@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 import clases.Cita;
 import clases.Cliente;
 import clases.Persona;
+import excepciones.ClienteNoExisteException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -140,7 +141,12 @@ public class PantallaRegistro extends JPanel {
 					TreeMap<LocalDateTime, Cita> citasCogidas = new TreeMap<LocalDateTime, Cita>();
 					new Cliente(nombre, apellidos, telefono, contraseña, citasCogidas );
 					JOptionPane.showMessageDialog(ventana, "Registrado Correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-					ventana.cambiarAPantalla(PantallaLogin.class);
+					try {
+						ventana.cambiarAPantalla(PantallaLogin.class);
+					} catch (ClienteNoExisteException e1) {
+						// TODO Bloque catch generado automáticamente
+						e1.printStackTrace();
+					}
 				}/* catch (SQLIntegrityConstraintViolationException e3) {
 					JOptionPane.showMessageDialog(ventana,  "El nombre de usuario ya existe", "No se pudo registar", JOptionPane.ERROR_MESSAGE);
 					Esta condición que de que no se repita el nombre siempre salta
@@ -164,7 +170,15 @@ public class PantallaRegistro extends JPanel {
 		gobackButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla(PantallaLogin.class);
+				try {
+					ventana.cambiarAPantalla(PantallaLogin.class);
+				} catch (SQLException e1) {
+					// TODO Bloque catch generado automáticamente
+					e1.printStackTrace();
+				} catch (ClienteNoExisteException e1) {
+					// TODO Bloque catch generado automáticamente
+					e1.printStackTrace();
+				}
 			}
 		});
 		GridBagConstraints gbc_gobackButton = new GridBagConstraints();

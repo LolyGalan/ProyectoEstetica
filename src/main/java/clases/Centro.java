@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.TreeMap;
 
+import enums.Especialidad;
 import excepciones.ClienteNoExisteException;
 import util.DAO;
 
@@ -86,6 +88,22 @@ public class Centro extends ElementoConNombre{
         DAO.actualizar("centro", datosMod, restriccion);
 		this.logo = logo;
 	}
+	
+	public static ArrayList<Centro> getTodos() throws SQLException, ClienteNoExisteException{
+		   LinkedHashSet<String> columnasSacar = new LinkedHashSet<>();
+		   columnasSacar.add("nombre");
+		   HashMap<String,Object> restricciones = new HashMap<>();
+		   ArrayList<Centro> centros = new ArrayList<>();
+		   ArrayList<Object> listaCentros= new ArrayList<>();
+		   listaCentros=DAO.consultar("centro", columnasSacar, restricciones);
+		   for(byte i =0;i<listaCentros.size();i+=3) {
+			   Centro centro = new Centro(
+					   (String)listaCentros.get(i));
+		   centros.add(centro);
+		   }
+		   return centros;
+	   }
+
 	@Override
 	public String toString() {
 		return "Centro [empleados=" + empleados + ", direccion=" + direccion + ", foto=" + foto + ", logo=" + logo

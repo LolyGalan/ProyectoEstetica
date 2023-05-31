@@ -3,6 +3,7 @@ package interfaces;
 import javax.swing.JPanel;
 
 import clases.Cliente;
+
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -31,7 +32,7 @@ public class ElementoListaCliente extends JPanel{
 		gbc_nameLabel.gridy = 0;
 		add(nameLabel, gbc_nameLabel);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Elegir");
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 5;
@@ -58,7 +59,6 @@ public class ElementoListaCliente extends JPanel{
 		gbc_citasLabel.gridx = 0;
 		gbc_citasLabel.gridy = 3;
 		add(citasLabel, gbc_citasLabel);
-		
 	}
 	
 }

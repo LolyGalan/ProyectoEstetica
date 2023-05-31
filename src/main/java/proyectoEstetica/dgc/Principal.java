@@ -2,7 +2,12 @@ package proyectoEstetica.dgc;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -24,20 +29,51 @@ public class Principal {
 	public static void main(String[] args) {
 		// TODO Esbozo de método generado automáticamente
 		Ventana v=new Ventana();
-		
-		
-		
-		try {
-			//ArrayList<cliente> clientes= Cliente.getTodos();
-			BufferedImage imagen= ImageIO.read(new File("./IMG_2699.jpg"));
-			for(short i =0; i< imagen.getWidth();i++ ) {
-				for(short j =0; j < imagen.getHeight();j++) {
-					imagen.setRGB(i,  j,imagen.getRGB(i, j)&Integer.parseInt("FF0000",16));
-				}
+		/*File carpeta = new File("./");
+		if(carpeta.isDirectory()) {
+			File[] hijos= carpeta.listFiles();
+			for(short i=0; i<hijos.length;i++) {
+				System.out.println(hijos[i]);
 			}
-			ImageIO.write(imagen, "jpg", new File("./imagenes/resultado.jpg"));
 		}
-		/*Scanner sc = new Scanner(System.in);
+		
+		public static void recorridoRecursivo(File carpeta) {
+			if(carpeta.isdirectory()) {
+				File[] hijos= carpeta.listFiles();
+				for(short i=0; i<hijos.length;i++) {
+					File
+				} 
+			}
+		}*/
+		
+		
+		/*File archivo= new File("./noExisto.txt");
+		System.out.println("Exite el archivo: "+archivo.exists());
+		try {
+			System.out.println("Puede crear el archivo"+ archivo.createNewFile());
+			System.out.println("Ruta absoluta"+ archivo.getAbsolutePath());
+			System.out.println("Nombre: "+ archivo.getName());
+			System.out.println("carpeta madre:" + archivo.getParent());
+			System.out.println("¿Es un directorio?"+ archivo.isDirectory());
+			System.out.println("tamaño total del disco duro" + archivo.getTotalSpace());
+			System.out.println("tamaño libre del disco duro: "+archivo.getFreeSpace());
+			System.out.println("¿Pude borrarlo?"+ archivo.delete());
+			System.out.println("tamaño del archivo(bytes)"+ archivo.length());
+			System.out.println("fecha de modificación"+archivo.lastModified());
+			LocalDateTime ultimaMod=LocalDateTime.now();
+			LocalDateTime ultimaMod2= LocalDateTime.ofEpochSecond(archivo.lastModified()/1000, 0, ZoneOffset.systemDefault().getRules().getOffset(Instant.now()));
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		*/
+		
+		
+		
+	/*	
+		
+		
+		Scanner sc = new Scanner(System.in);
 		try {
 			System.out.println("Ha empezado");
 			LinkedHashSet columnasSacar = new LinkedHashSet<String>();

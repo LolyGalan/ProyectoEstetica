@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import BotonAzul.BotonAzul;
 import clases.Cliente;
 import excepciones.ClienteNoExisteException;
 import excepciones.ContraseñaInvalidaException;
@@ -26,10 +27,12 @@ public class PantallaLogin extends JPanel {
 	private JPasswordField passwordField;
 	private Ventana ventana;
 	public PantallaLogin(Ventana v) {
+		setBackground(new Color(0, 0, 255));
 		this.ventana = v;
 		setLayout(null);
 		
 		JLabel userLabel = new JLabel("Usuario");
+		userLabel.setForeground(new Color(248, 248, 255));
 		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		userLabel.setBackground(new Color(240, 240, 240));
 		userLabel.setBounds(212, 45, 157, 53);
@@ -41,6 +44,7 @@ public class PantallaLogin extends JPanel {
 		userField.setColumns(10);
 		
 		JLabel passwordLabel = new JLabel("Contraseña");
+		passwordLabel.setForeground(new Color(253, 245, 230));
 		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		passwordLabel.setBounds(212, 169, 129, 46);
 		add(passwordLabel);
@@ -48,6 +52,7 @@ public class PantallaLogin extends JPanel {
 		
 		
 		JButton loginButton = new JButton("Iniciar sesión");
+		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		loginButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -57,7 +62,7 @@ public class PantallaLogin extends JPanel {
 				try {
 					ventana.clienteLogado = new Cliente(nombre, contraseña);
 					JOptionPane.showMessageDialog(ventana, "Bienvenido, "+ ventana.clienteLogado.getNombre(), "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-					ventana.cambiarAPantalla(PantallaCliente.class);
+					ventana.cambiarAPantalla(PantallaCentros.class);
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Login Fallido", JOptionPane.ERROR_MESSAGE);
 
@@ -72,6 +77,12 @@ public class PantallaLogin extends JPanel {
 					e1.printStackTrace();
 				}
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
 		});
 		loginButton.setForeground(new Color(245, 255, 250));
 		loginButton.addActionListener(new ActionListener() {
@@ -82,12 +93,21 @@ public class PantallaLogin extends JPanel {
 		loginButton.setBounds(212, 304, 157, 46);
 		add(loginButton);
 		
-		JButton registryButton = new JButton("Regístrate");
+		final BotonAzul registryButton = new BotonAzul("Regístrate");
 		registryButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla(PantallaRegistro.class);
+				try {
+					ventana.cambiarAPantalla(PantallaRegistro.class);
+				} catch (SQLException e1) {
+					// TODO Bloque catch generado automáticamente
+					e1.printStackTrace();
+				} catch (ClienteNoExisteException e1) {
+					// TODO Bloque catch generado automáticamente
+					e1.printStackTrace();
+				}
 			}
+			
 		});
 		registryButton.setForeground(new Color(248, 248, 255));
 		registryButton.setBackground(new Color(220, 20, 60));
@@ -95,6 +115,7 @@ public class PantallaLogin extends JPanel {
 		add(registryButton);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		passwordField.setBounds(212, 213, 157, 46);
 		add(passwordField);
 	}
